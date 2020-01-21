@@ -436,7 +436,7 @@ the template that it itself is using form the above sections.
   {{- $_ := set $autoEnv "KONG_PG_HOST" (include "kong.postgresql.fullname" .) -}}
   {{- $_ := set $autoEnv "KONG_PG_PORT" .Values.postgresql.service.port -}}
   {{- $pgPassword := include "secretkeyref" (dict "name" (include "kong.postgresql.fullname" .) "key" "postgresql-password") -}}
-  {{- $_ := set $autoEnv "KONG_ADMIN_GUI_AUTH_CONF" $pgPassword -}}
+  {{- $_ := set $autoEnv "KONG_PG_PASSWORD" $pgPassword -}}
 {{- end }}
 
 {{- if (and (not .Values.ingressController.enabled) (eq .Values.env.database "off")) }}

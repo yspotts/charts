@@ -463,7 +463,7 @@ the template that it itself is using form the above sections.
 {{- $completeEnv := mergeOverwrite $autoEnv $userEnv -}}
 
 {{- range keys $completeEnv }}
-{{- $val := get $completeEnv . -}}
+{{- $val := pluck . $completeEnv | first -}}
 {{- $valueType := printf "%T" $val -}}
 {{ if eq $valueType "map[string]interface {}" }}
 - name: {{ . }}
